@@ -51,6 +51,31 @@ export default defineConfig({
       workbox, // workbox.config.ts
       includeAssets: ["**/*", "sw.js", "!splash-screens/**/*"],
     }),
+    {
+      name: "health-endpoint",
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url === "/health" || req.url === "/health/") {
+            res.setHeader("Content-Type", "application/json");
+            res.statusCode = 200;
+            res.end(JSON.stringify({ status: "ok" }));
+            return;
+          }
+          next();
+        });
+      },
+      configurePreviewServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url === "/health" || req.url === "/health/") {
+            res.setHeader("Content-Type", "application/json");
+            res.statusCode = 200;
+            res.end(JSON.stringify({ status: "ok" }));
+            return;
+          }
+          next();
+        });
+      },
+    },
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json", ".mjs", ".mts"],

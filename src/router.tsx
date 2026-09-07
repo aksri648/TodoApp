@@ -12,6 +12,7 @@ const Categories = lazy(() => import("./pages/Categories"));
 const Purge = lazy(() => import("./pages/Purge"));
 const Sync = lazy(() => import("./pages/Sync"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Health = lazy(() => import("./pages/Health"));
 
 const AppRouter = (): ReactElement => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = (): ReactElement => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/purge" element={<Purge />} />
         <Route path="/sync" element={<Sync />} />
+        <Route path="/health" element={<Health />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
